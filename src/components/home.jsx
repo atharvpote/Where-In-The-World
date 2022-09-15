@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import { IoMdArrowDropdown } from "react-icons/io";
 
 export default function Home() {
   const filters = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
@@ -33,16 +34,25 @@ export default function Home() {
           }}
           className="mb-12 block py-4 px-8 shadow placeholder:opacity-75 md:mb-0"
         />
-        <select
-          defaultValue={"none"}
-          onChange={(e) => setFilter(e.target.value)}
-          className="appearance-none py-4 px-8 shadow"
-        >
-          <option value="none">Filter by Region</option>
-          {filters.map((filter, index) => (
-            <option key={index}>{filter}</option>
-          ))}
-        </select>
+        <div className="relative h-16 w-40">
+          <label
+            htmlFor="filter"
+            className="absolute right-0 top-1/2 -translate-y-1/2 pr-2"
+          >
+            <IoMdArrowDropdown />
+          </label>
+          <select
+            id="filter"
+            defaultValue={"none"}
+            onChange={(e) => setFilter(e.target.value)}
+            className="h-full w-full appearance-none pl-4 pr-8 shadow"
+          >
+            <option value="none">Filter by Region</option>
+            {filters.map((filter, index) => (
+              <option key={index}>{filter}</option>
+            ))}
+          </select>
+        </div>
       </form>
       <div className="grid-column-auto-fill grid auto-rows-fr gap-12 px-4">
         {result(data, filter, searchTerm).map((country, index) => (
