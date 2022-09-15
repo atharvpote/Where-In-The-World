@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <header className="bg-white py-8 shadow dark:bg-[#2b3743]">
       <div className="mx-auto flex max-w-7xl justify-between px-4">
-        <Link to={"/"} className="cursor-pointer">
+        <Link to="/" className="cursor-pointer">
           <h1 className="font-extrabold dark:text-white">
             Where in the world?
           </h1>

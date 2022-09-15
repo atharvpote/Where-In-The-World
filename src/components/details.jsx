@@ -21,6 +21,7 @@ export default function Details() {
 
   const [data, setData] = useState(detailsFormat);
   const [borderData, setBorderData] = useState([]);
+  const isMounted = useRef(false);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -28,7 +29,6 @@ export default function Details() {
     getData(country, setData);
   }, [country]);
 
-  const isMounted = useRef(false);
   useEffect(() => {
     if (isMounted.current) {
       getBorderData(data.borders, setBorderData);
@@ -103,9 +103,6 @@ export default function Details() {
                 {borderData.map((border, index) => (
                   <Link
                     to={`/${border.name.official}`}
-                    onClick={() => {
-                      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-                    }}
                     key={index}
                     className="bg-white px-4 py-2 shadow dark:bg-[#2b3743]"
                   >
