@@ -3,8 +3,8 @@ import { GrMoon } from "react-icons/gr";
 
 export default function Header() {
   return (
-    <header className="bg-white px-4 py-8 shadow">
-      <div className="mx-auto flex max-w-7xl justify-between">
+    <header className="bg-white py-8 shadow">
+      <div className="mx-auto flex max-w-7xl justify-between px-4">
         <Link to={"/"} className="cursor-pointer">
           <h1 className="font-extrabold">Where in the world?</h1>
         </Link>
