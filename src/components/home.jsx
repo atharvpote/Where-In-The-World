@@ -20,10 +20,10 @@ export default function Home() {
   return (
     <div className="mx-auto max-w-7xl pb-8">
       <form className="py-8 px-4 md:flex md:justify-between">
-        <div className="mb-12 flex items-center shadow md:mb-0">
+        <div className="mb-12 flex items-center bg-white shadow dark:bg-[#2b3743] md:mb-0">
           <label
             htmlFor="search"
-            className="flex h-full w-16 items-center bg-white"
+            className="flex h-full w-16 items-center bg-white dark:bg-[#2b3743]"
           >
             <BsSearch className="w-full fill-gray-500 opacity-75" />
           </label>
@@ -42,17 +42,17 @@ export default function Home() {
                 setSearchTerm(e.target.value);
               }, 500);
             }}
-            className="block w-full py-4 px-8 pl-2 outline-none placeholder:opacity-75 md:basis-64"
+            className="block w-full py-4 px-8 pl-2 outline-none placeholder:opacity-75 dark:bg-[#2b3743] md:basis-64"
           />
         </div>
         <div className="relative h-12 w-60 shadow">
           <Listbox value={filter} onChange={setFilter}>
-            <Listbox.Button className="flex h-full w-full items-center justify-between bg-white px-8">
+            <Listbox.Button className="flex h-full w-full items-center justify-between bg-white pl-8 pr-7 dark:bg-[#2b3743] dark:text-white">
               {!filter ? "Filter by Region" : filter}
               <IoMdArrowDropdown />
             </Listbox.Button>
             <Listbox.Options
-              className="mt-2 bg-white shadow
+              className="mt-2 bg-white shadow dark:bg-[#2b3743] dark:text-white
             "
             >
               {filters.map((fil, index) => (
@@ -73,7 +73,7 @@ export default function Home() {
           <Link to={`/${country.name.official}`} key={index}>
             <article
               className="h-full overflow-hidden
-             rounded-md bg-white shadow"
+             rounded-md bg-white shadow dark:bg-[#2b3743] dark:text-white"
             >
               <img
                 src={country.flags.svg}

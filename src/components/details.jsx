@@ -36,12 +36,12 @@ export default function Details() {
   }, [data.borders]);
 
   return (
-    <div className="mx-auto max-w-7xl pb-8">
+    <div className="mx-auto max-w-7xl pb-8 dark:text-white">
       <div className="px-4">
         <div className="py-8">
           <Link
             to={"/"}
-            className="flex w-32 cursor-pointer items-center justify-between border-2 bg-white px-8 py-2 shadow"
+            className="flex w-32 cursor-pointer items-center justify-between bg-white px-8 py-2 shadow dark:bg-[#2b3743] dark:text-white"
           >
             <BsArrowLeft className="stroke-1" />
             Back
@@ -105,7 +105,7 @@ export default function Details() {
                       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
                     }}
                     key={index}
-                    className="bg-white px-4 py-2 shadow"
+                    className="bg-white px-4 py-2 shadow dark:bg-[#2b3743]"
                   >
                     {border.name.common}
                   </Link>

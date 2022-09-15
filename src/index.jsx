@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { StrictMode, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Details from "./components/details";
@@ -15,10 +15,20 @@ root.render(
 );
 
 function App() {
+  const [theme, setTheme] = useState(localStorage.getItem("theme"));
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
+
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#202d36]">
       <BrowserRouter>
-        <Header />
+        <Header theme={theme} setTheme={setTheme} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/:country" element={<Details />} />
