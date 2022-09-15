@@ -19,7 +19,10 @@ export default function Home() {
 
   return (
     <div className="mx-auto max-w-7xl pb-8">
-      <form className="py-8 px-4 md:flex md:justify-between">
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className="py-8 px-4 md:flex md:justify-between"
+      >
         <div className="mb-12 flex items-center bg-white shadow dark:bg-[#2b3743] md:mb-0">
           <label
             htmlFor="search"
@@ -42,7 +45,7 @@ export default function Home() {
                 setSearchTerm(e.target.value);
               }, 500);
             }}
-            className="block w-full py-4 px-8 pl-2 outline-none placeholder:opacity-75 dark:bg-[#2b3743] md:basis-64"
+            className="block w-full py-4 px-8 pl-2 outline-none placeholder:opacity-75 dark:bg-[#2b3743] dark:text-white md:basis-64"
           />
         </div>
         <div className="relative h-12 w-60 shadow">
@@ -112,7 +115,7 @@ function result(data, filter = "", searchTerm = "") {
 
   if (searchTerm)
     result = result.filter((country) =>
-      country.name.common.toLowerCase().includes(searchTerm)
+      country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
   return result;
