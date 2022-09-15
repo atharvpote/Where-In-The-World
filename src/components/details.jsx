@@ -23,6 +23,8 @@ export default function Details() {
   const [borderData, setBorderData] = useState([]);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+
     getData(country, setData);
   }, [country]);
 
