@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { BsSearch } from "react-icons/bs";
+import { Listbox } from "@headlessui/react";
 
 export default function Home() {
   const filters = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
@@ -18,40 +20,52 @@ export default function Home() {
   return (
     <div className="mx-auto max-w-7xl pb-8">
       <form className="py-8 px-4 md:flex md:justify-between">
-        <input
-          type="text"
-          placeholder="Search for a country..."
-          onChange={(e) => {
-            if (timer.current) {
-              clearTimeout(timer.current);
-
-              timer.current = null;
-            }
-
-            timer.current = setTimeout(() => {
-              setSearchTerm(e.target.value);
-            }, 500);
-          }}
-          className="mb-12 block py-4 px-8 shadow placeholder:opacity-75 md:mb-0"
-        />
-        <div className="relative h-16 w-40">
+        <div className="mb-12 flex items-center shadow md:mb-0">
           <label
-            htmlFor="filter"
-            className="absolute right-0 top-1/2 -translate-y-1/2 pr-2"
+            htmlFor="search"
+            className="flex h-full w-16 items-center bg-white"
           >
-            <IoMdArrowDropdown />
+            <BsSearch className="w-full fill-gray-500 opacity-75" />
           </label>
-          <select
-            id="filter"
-            defaultValue={"none"}
-            onChange={(e) => setFilter(e.target.value)}
-            className="h-full w-full appearance-none pl-4 pr-8 shadow"
-          >
-            <option value="none">Filter by Region</option>
-            {filters.map((filter, index) => (
-              <option key={index}>{filter}</option>
-            ))}
-          </select>
+          <input
+            id="search"
+            type="text"
+            placeholder="Search for a country..."
+            onChange={(e) => {
+              if (timer.current) {
+                clearTimeout(timer.current);
+
+                timer.current = null;
+              }
+
+              timer.current = setTimeout(() => {
+                setSearchTerm(e.target.value);
+              }, 500);
+            }}
+            className="block w-full py-4 px-8 pl-2 outline-none placeholder:opacity-75 md:basis-64"
+          />
+        </div>
+        <div className="relative h-12 w-60 shadow">
+          <Listbox value={filter} onChange={setFilter}>
+            <Listbox.Button className="flex h-full w-full items-center justify-between bg-white px-8">
+              {!filter ? "Filter by Region" : filter}
+              <IoMdArrowDropdown />
+            </Listbox.Button>
+            <Listbox.Options
+              className="mt-2 bg-white shadow
+            "
+            >
+              {filters.map((fil, index) => (
+                <Listbox.Option
+                  key={index}
+                  value={fil}
+                  className="ml-8 flex h-12 cursor-pointer items-center text-center"
+                >
+                  {fil}
+                </Listbox.Option>
+              ))}
+            </Listbox.Options>
+          </Listbox>
         </div>
       </form>
       <div className="grid-column-auto-fill grid auto-rows-fr gap-12 px-4">
