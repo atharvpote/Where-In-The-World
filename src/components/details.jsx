@@ -29,7 +29,7 @@ export default function Details() {
   const isMounted = useRef(false);
   useEffect(() => {
     if (isMounted.current) {
-      getBorderData(data, setBorderData);
+      getBorderData(data.borders, setBorderData);
     } else {
       isMounted.current = true;
     }
@@ -143,7 +143,9 @@ async function getData(country, setter) {
 async function getBorderData(data, setter) {
   const borderData = [];
 
-  for (const country of data.borders) {
+  if (!data) return borderData;
+
+  for (const country of data) {
     const res = await fetch(`https://restcountries.com/v3.1/alpha/${country}`);
 
     borderData.push(...(await res.json()));
