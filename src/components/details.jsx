@@ -138,17 +138,18 @@ async function getData(country, setter) {
 }
 
 async function getBorderData(data, setter) {
-  const borderData = [];
+  if (!data) setter([]);
+  else {
+    const key = data.join(",");
+    const res = await fetch(
+      `https://restcountries.com/v3.1/alpha?codes=${key}`
+    );
+    const countries = await res.json();
 
-  if (!data) return borderData;
-
-  for (const country of data) {
-    const res = await fetch(`https://restcountries.com/v3.1/alpha/${country}`);
-
-    borderData.push(...(await res.json()));
+    if (Array.isArray(countries)) {
+      setter(countries);
+    }
   }
-
-  setter(borderData);
 }
 
 function extractCurrencyNames(obj) {
