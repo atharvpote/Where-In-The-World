@@ -73,7 +73,7 @@ export default function Home() {
       </form>
       <div className="grid-column-auto-fill grid auto-rows-fr gap-12 px-4">
         {result(data, filter, searchTerm).map((country, index) => (
-          <Link to={`/${country.name.official}`} key={index}>
+          <Link to={`/${country.name.official}`} target="_blank" key={index}>
             <article
               className="h-full overflow-hidden
              rounded-md bg-white shadow dark:bg-[#2b3743] dark:text-white"

@@ -103,6 +103,7 @@ export default function Details() {
                 {borderData.map((border, index) => (
                   <Link
                     to={`/${border.name.official}`}
+                    target="_blank"
                     key={index}
                     className="bg-white px-4 py-2 shadow dark:bg-[#2b3743]"
                   >
