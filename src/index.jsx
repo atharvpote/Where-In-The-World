@@ -24,11 +24,13 @@ function App() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#202d36]">
       <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/:country" element={<Details />} />
-        </Routes>
+        <main>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/:country" element={<Details />} />
+          </Routes>
+        </main>
       </BrowserRouter>
     </div>
   );
