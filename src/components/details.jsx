@@ -102,7 +102,7 @@ export default function Details() {
               <div className="flex flex-wrap items-center gap-2">
                 {borderData.map((border, index) => (
                   <Link
-                    to={`/${border.name.official}`}
+                    to={`/${border.cca3}`}
                     key={index}
                     className="bg-white px-4 py-2 shadow dark:bg-[#2b3743]"
                   >
@@ -119,9 +119,7 @@ export default function Details() {
 }
 
 async function getData(country, setter) {
-  const res = await fetch(
-    `https://restcountries.com/v3.1/name/${country}?fullText=true`
-  );
+  const res = await fetch(`https://restcountries.com/v3.1/alpha/${country}`);
   const [data] = await res.json();
 
   setter({
